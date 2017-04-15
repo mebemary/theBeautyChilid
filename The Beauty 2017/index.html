@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<head>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="./styles/styles.css">
+       <style>
+        body {
+                background-image:url("../img/img.jpg");
+                font-family: Velino;
+        }
+
+        #dataTable {
+                margin-left:auto; 
+                margin-right:auto;
+                border-collapse: collapse;
+                width: 300px;
+        }
+
+        #dataTable td, #dataTable td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                width: 300px;
+        }
+        
+        #dataTable tr:hover {
+                background-color: #ffcce9;
+                }
+
+        tr:nth-child(even) {
+                background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+                background-color: white;
+        }
+
+        #dataTable th {
+                font-weight: bold;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: center;
+                background-color: #ffcce9;
+        }
+
+        input[type=text], select {
+                width: 200px;
+                padding: 3px 3px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ffcce9;
+                border-radius: 4px;
+                box-sizing: border-box;
+        }
+        input[type=button] {
+                width: 50px;
+                background-color: #ffcce9;
+                color: white;
+                padding: 3px 3px;
+                margin: 8px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+        }
+        form {
+                position:initial;
+                margin-top: 50px;
+                clear : none;
+        }
+        #textField2 {
+                 visibility: hidden;
+        }
+        
+</style>
+</head>
+<body>
+        <div id="app">
+        </div>
+        <script src="./bundle.js" ></script>
+        <form>
+                <script>
+                        function toggle() {
+                        var temp = document.getElementById("textField2");
+                        var selected = document.getElementById("select").value;
+                        if( (selected === "id") ||  (selected === "experience") || (selected === "dateOfBirth")){
+                                temp.style.visibility = "visible";
+                        } else {
+                                temp.style.visibility = "hidden";
+                        }
+                }
+                </script>
+                <input type="text" id="textField" placeholder="Filtruj...">
+                <input class="hidden" type="text" id="textField2" placeholder="Do..."> <br>
+                 <select id="select" name="selectData" onchange="toggle()">
+                        <option value="firstName">Imię</option>
+                        <option value="lastName">Nazwisko</option>
+                        <option value="function">Funkcja</option>
+                        <option value="id">id</option>
+                        <option value="experience">Doświadczenie</option>
+                        <option value="dateOfBirth">Data urodzenia</option>
+                </select>
+                <br>
+                <input id="filter" type="button" value="Filtruj"> <br>
+        </form>
+        <form>
+                <select id="selectSort" name="sort">
+                        <option value="ascending">Rosnąco</option>
+                        <option value="descending">Malejąco</option>
+                        <option value="alphabetically">Alfabetycznie</option>
+                </select>
+                <input id="sort" type="button" value="Sortuj">   
+        </form>
+        
+        <table id="dataTable">
+                <tr> 
+                        <th>id</th>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Funkcja</th>
+                        <th>Data urodzenia</th>
+                </tr>
+        </table>
+        
+</body>
+</html>
