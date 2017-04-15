@@ -7,7 +7,7 @@ $.getJSON("sluzba.json", function(result){
     data = $.each(result, function(el){
         return el;
     });
-    addToTable(data);
+    addToTable(data, 5, 0);
 });
 
 //clears rows in the table, besides the first one
@@ -19,23 +19,23 @@ function clearTable(){
 }
 
 //adds values to a html table
-function addToTable (array) {
+function addToTable (array, perPage, startFrom) {
     var myTable = document.getElementById("dataTable");
-    for (var i=0; i<array.length; i++) {
+    for (var i=0; (i<perPage) && startFrom < array.length; i++) {
         var row = myTable.insertRow(i+1);
         var cell = row.insertCell(0);
-        cell.innerHTML = "<tr><tbody><td>" + array[i].id + "</td>";
+        cell.innerHTML = "<tr><tbody><td>" + array[startFrom].id + "</td>";
         cell = row.insertCell(1);
-        cell.innerHTML = "<tr><tbody><td>" + array[i].firstName + "</td>";
+        cell.innerHTML = "<tr><tbody><td>" + array[startFrom].firstName + "</td>";
         cell = row.insertCell(2);
-        cell.innerHTML = "<td>" + array[i].lastName + "</td>";
+        cell.innerHTML = "<td>" + array[startFrom].lastName + "</td>";
         cell = row.insertCell(3);
-        cell.innerHTML = "<td>" + array[i].function + "</td>";
+        cell.innerHTML = "<td>" + array[startFrom].function + "</td>";
         cell = row.insertCell(4);
-        cell.innerHTML = "<td>" + array[i].dateOfBirth + "</td></tbody></tr>";
+        cell.innerHTML = "<td>" + array[startFrom].dateOfBirth + "</td></tbody></tr>";
+        startFrom++;
     }
 }
-
 
 window.onload = function () {
 //reacts to clicking a button and filters data
@@ -52,8 +52,8 @@ document.getElementById("filter").onclick = function(){
             array = filterDate(data, label, label2);
         }
         clearTable();
-        addToTable(array);
-    };
+        addToTable(array, 5, 0);
+};
 
 //reacts to clicking a button and sorts data
 document.getElementById("sort").onclick = function(){
@@ -67,8 +67,24 @@ document.getElementById("sort").onclick = function(){
             array = alphSort(data);
         }
         clearTable();
-        addToTable(array);
-    };
+        addToTable(array, 5, 0);
+};
+
+document.getElementById("pageOne").onclick = function(){
+    clearTable();
+    addToTable(data, 5, 0);
+};
+
+document.getElementById("pageTwo").onclick = function(){
+    clearTable();
+    addToTable(data, 5, 5);
+};
+
+document.getElementById("pageThree").onclick = function(){
+    clearTable();
+    addToTable(data, 5, 10);
+};
+
 }
 
 //filters parameters containing name and function
@@ -162,7 +178,7 @@ function dscSort(array) {
 function alphSort(array) {
     for (var i = 1; i < array.length; i++) {
         var tmp = array[i];
-        for (var j = i - 1; j >= 0 && ((array[j].firstName).localeCompare(tmp.firstName)) === (-1); j--) {
+        for (var j = i - 1; j >= 0 && ((array[j].firstName).localeCompare(tmp.firstName)) === 1; j--) {
             array[j + 1] = array[j];
         }
         array[j + 1] = tmp;
