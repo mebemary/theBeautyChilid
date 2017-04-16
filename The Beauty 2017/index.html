@@ -1,104 +1,14 @@
 <!DOCTYPE HTML>
 <head>
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-       <link rel="stylesheet" type="text/css" href="./styles/styles.css">
-       <style>
-        body {
-                background-image:url("../img/img.jpg");
-                font-family: Velino;
-        }
-
-        #dataTable {
-                text-align: center;
-                table-layout:fixed;
-                margin-left:auto; 
-                margin-right:auto;
-                border-collapse: collapse;
-                width: 700px;
-                transform: translate(0, -10%); 
-        }
-
-        #dataTable td {
-                padding: 8px;
-                width: 300px;
-        }
-        
-        #dataTable tr:hover {
-                background-color: #ffcce9;
-                }
-
-        tr:nth-child(even) {
-                background-color: #f2f2f2;
-        }
-
-        tr:nth-child(odd) {
-                background-color: white;
-        }
-
-        #dataTable th {
-                font-weight: bold;
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: center;
-                background-color: #ffcce9;
-        }
-
-        input[type=text], select {
-                width: 200px;
-                padding: 3px 3px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ffcce9;
-                border-radius: 4px;
-                box-sizing: border-box;
-        }
-
-        input[type=button] {
-                width: 50px;
-                background-color: #ffcce9;
-                color: white;
-                padding: 3px 3px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transform: translate(20%, 0);
-        }
-
-        form {
-                position:initial;
-                margin-bottom: 18px;
-                clear : none;
-                padding: 3px 3px;
-                transform: translate(0, 60%); 
-        }
-
-        #textField2 {
-                 visibility: hidden;
-        }
-
-        a {
-                color: black;
-                float: left;
-                padding: 8px 16px;
-                text-decoration: none;
-        }
-
-        a.active {
-                background-color: #ffcce9;
-                color: white;
-        }
-
-        form1 {
-                position: absolute;
-                transform: translate(740px, 0px);
-                }
-</style>
+       <link rel="stylesheet" type="text/css" href="./styles/styles.css"> 
 </head>
 <body>
         <div id="app">
         </div>
-        <script src="./bundle.js" ></script>
+        <script src="./bundle.js"></script>
         <form>
+                <form1>
                 <script>
                         function toggle() {
                         var text1 = document.getElementById("textField");
@@ -121,6 +31,7 @@
                         }
                 }
                 </script>
+                <div>Filtrowanie</div>
                 <input type="text" id="textField" placeholder="Filtruj...">
                 <input class="hidden" type="text" id="textField2"> <br>
                  <select id="select" name="selectData" onchange="toggle()">
@@ -132,8 +43,11 @@
                         <option value="dateOfBirth">Data urodzenia</option>
                 </select>
                 <input id="filter" type="button" value="Filtruj">
+                </form1>
         </form>
         <form>
+                <br>
+                <div>Sortowanie</div>
                 <select id="selectSort" name="sort">
                         <option value="ascending">Rosnąco</option>
                         <option value="descending">Malejąco</option>
@@ -144,7 +58,7 @@
         
         <table id="dataTable">
                 <tr> 
-                        <th style="width: 7%;">id</th>
+                        <th style="width: 7%;">Id</th>
                         <th>Imię</th>
                         <th>Nazwisko</th>
                         <th>Data urodzenia</th>
@@ -152,11 +66,11 @@
                         <th>Doświadczenie</th>
                 </tr>
         </table>
-        <form1>
+        <form style="text-align:center">
                 <a id="pageOne" class="active">1</a>
                 <a id="pageTwo">2</a>
                 <a id="pageThree">3</a>
-        </form1>
+        </form>
         <script>
                 links = document.querySelectorAll("a")
                 links.forEach(function (item) {
@@ -166,7 +80,7 @@
                                         item.style.backgroundColor = 'transparent';
                                         item.style.color = 'black';
                                 })
-                                //apply the style to the link
+                                //apply the style to the acctive link
                                 this.style.backgroundColor = '#ffcce9';
                                 this.style.color = 'white';
                         });

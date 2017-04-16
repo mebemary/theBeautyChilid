@@ -1,5 +1,88 @@
 @font-face {
-            font-family: Velino;
-            src: url("../fonts/VelinoText-Book.otf");
+        font-family: Velino;
+        src: url("../fonts/VelinoText-Book.otf");
+    }
+
+body {
+        background-image:url("../img/img.jpg");
+        font-family: Velino;
+    }
+
+#dataTable {
+        text-align: center;
+        table-layout: fixed;
+        margin-left: auto; 
+        margin-right: auto;
+        border-collapse: collapse;
+        width: 700px;
+        transform: translate(0, -30%); 
+}
+
+#dataTable td {
+        padding: 8px;
+        width: 300px;
+}
+
+#dataTable tr:hover {
+        background-color: #ffcce9;
         }
 
+tr:nth-child(even) {
+        background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+        background-color: white;
+}
+
+#dataTable th {
+        font-weight: bold;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: #ffcce9;
+}
+
+input[type=text], select {
+        width: 200px;
+        padding: 3px 3px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ffcce9;
+        border-radius: 4px;
+        box-sizing: border-box;
+}
+
+input[type=button] {
+        width: 50px;
+        background-color: #ffcce9;
+        color: white;
+        padding: 3px 3px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transform: translate(20%, 0);
+}
+
+form {
+        position:initial;
+        margin-bottom: 18px;
+        clear : none;
+        padding: 3px 3px;
+        transform: translate(0, 100%); 
+}
+
+#textField2 {
+            visibility: hidden;
+}
+
+a {
+        color: black;
+        padding: 8px 16px;
+        text-decoration: none;
+}
+
+a.active {
+        background-color: #ffcce9;
+        color: white;
+}
