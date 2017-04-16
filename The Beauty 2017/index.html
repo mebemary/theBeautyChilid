@@ -14,7 +14,7 @@
                 margin-left:auto; 
                 margin-right:auto;
                 border-collapse: collapse;
-                width: 500px;
+                width: 700px;
                 transform: translate(0, -10%); 
         }
 
@@ -76,28 +76,22 @@
                  visibility: hidden;
         }
 
-        .pagination a {
+        a {
                 color: black;
                 float: left;
                 padding: 8px 16px;
                 text-decoration: none;
         }
 
-        .pagination a.active {
+        a.active {
                 background-color: #ffcce9;
+                color: white;
         }
 
-        form1 div {
+        form1 {
                 position: absolute;
                 transform: translate(740px, 0px);
                 }
-
-        color{
-                background:#ffcce9;
-        }
-        pages:hover{
-        cursor:pointer;
-        }
 </style>
 </head>
 <body>
@@ -107,17 +101,28 @@
         <form>
                 <script>
                         function toggle() {
-                        var temp = document.getElementById("textField2");
+                        var text1 = document.getElementById("textField");
+                        var text2 = document.getElementById("textField2");
                         var selected = document.getElementById("select").value;
-                        if( (selected === "id") ||  (selected === "experience") || (selected === "dateOfBirth")){
-                                temp.style.visibility = "visible";
-                        } else {
-                                temp.style.visibility = "hidden";
+                        text1.value = "";
+                        text2.value = "";
+                        if( (selected === "id") ||  (selected === "experience")){
+                                text1.placeholder = "Od...";
+                                text2.placeholder = "Do...";
+                                text2.style.visibility = "visible";
+                        }else if (selected === "dateOfBirth") {
+                                text1.placeholder = "Od: dd.mm.rrrr";
+                                text2.placeholder = "Do: dd.mm.rrrr";
+                                text2.style.visibility = "visible";
+                        }
+                        else {
+                                text1.placeholder = "Filtruj...";
+                                text2.style.visibility = "hidden";
                         }
                 }
                 </script>
                 <input type="text" id="textField" placeholder="Filtruj...">
-                <input class="hidden" type="text" id="textField2" placeholder="Do..."> <br>
+                <input class="hidden" type="text" id="textField2"> <br>
                  <select id="select" name="selectData" onchange="toggle()">
                         <option value="firstName">Imię</option>
                         <option value="lastName">Nazwisko</option>
@@ -139,19 +144,18 @@
         
         <table id="dataTable">
                 <tr> 
-                        <th>id</th>
+                        <th style="width: 7%;">id</th>
                         <th>Imię</th>
                         <th>Nazwisko</th>
-                        <th>Funkcja</th>
                         <th>Data urodzenia</th>
+                        <th>Funkcja</th>
+                        <th>Doświadczenie</th>
                 </tr>
         </table>
         <form1>
-                <div class="pagination">
                 <a id="pageOne" class="active">1</a>
                 <a id="pageTwo">2</a>
                 <a id="pageThree">3</a>
-                </div>
         </form1>
         <script>
                 links = document.querySelectorAll("a")
@@ -160,12 +164,13 @@
                                 //reset the color of other links
                                 links.forEach(function (item) {
                                         item.style.backgroundColor = 'transparent';
+                                        item.style.color = 'black';
                                 })
-                                // apply the style to the link
+                                //apply the style to the link
                                 this.style.backgroundColor = '#ffcce9';
+                                this.style.color = 'white';
                         });
                 })
-
         </script>
 </body>
 </html>

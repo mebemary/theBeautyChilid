@@ -7,7 +7,7 @@ $.getJSON("sluzba.json", function(result){
     data = $.each(result, function(el){
         return el;
     });
-    addToTable(data, 5, 0);
+    displayTable(data, 5, 0);
 });
 
 //clears rows in the table, besides the first one
@@ -19,21 +19,25 @@ function clearTable(){
 }
 
 //adds values to a html table
-function addToTable (array, perPage, startFrom) {
+function displayTable (array, perPage, startFrom) {
     var myTable = document.getElementById("dataTable");
+    var rowNumber = 0;
     for (var i=0; (i<perPage) && startFrom < array.length; i++) {
         var row = myTable.insertRow(i+1);
-        var cell = row.insertCell(0);
+        var cell = row.insertCell(rowNumber);
         cell.innerHTML = "<tr><tbody><td>" + array[startFrom].id + "</td>";
-        cell = row.insertCell(1);
-        cell.innerHTML = "<tr><tbody><td>" + array[startFrom].firstName + "</td>";
-        cell = row.insertCell(2);
+        cell = row.insertCell(++rowNumber);
+        cell.innerHTML = "<tr>" + array[startFrom].firstName + "</td>";
+        cell = row.insertCell(++rowNumber);
         cell.innerHTML = "<td>" + array[startFrom].lastName + "</td>";
-        cell = row.insertCell(3);
+        cell = row.insertCell(++rowNumber);
+        cell.innerHTML = "<td>" + array[startFrom].dateOfBirth + "</td>";
+        cell = row.insertCell(++rowNumber);
         cell.innerHTML = "<td>" + array[startFrom].function + "</td>";
-        cell = row.insertCell(4);
-        cell.innerHTML = "<td>" + array[startFrom].dateOfBirth + "</td></tbody></tr>";
+        cell = row.insertCell(++rowNumber);
+        cell.innerHTML = "<td>" + array[startFrom].experience + "</td></tbody></tr>";
         startFrom++;
+        rowNumber = 0;
     }
 }
 
@@ -52,7 +56,7 @@ document.getElementById("filter").onclick = function(){
             array = filterDate(data, label, label2);
         }
         clearTable();
-        addToTable(array, 5, 0);
+        displayTable(array, 5, 0);
 };
 
 //reacts to clicking a button and sorts data
@@ -67,22 +71,22 @@ document.getElementById("sort").onclick = function(){
             array = alphSort(data);
         }
         clearTable();
-        addToTable(array, 5, 0);
+        displayTable(array, 5, 0);
 };
 
 document.getElementById("pageOne").onclick = function(){
     clearTable();
-    addToTable(data, 5, 0);
+    displayTable(data, 5, 0);
 };
 
 document.getElementById("pageTwo").onclick = function(){
     clearTable();
-    addToTable(data, 5, 5);
+    displayTable(data, 5, 5);
 };
 
 document.getElementById("pageThree").onclick = function(){
     clearTable();
-    addToTable(data, 5, 10);
+    displayTable(data, 5, 10);
 };
 
 }
@@ -127,26 +131,31 @@ function filterRange (array, val1, val2, param) {
 
 //filters date by year, month and day in a given range
 function filterDate (array, val1, val2) {
+    
     let tempArray = [];
+    debugger;
     //dates which make the range
     let date1 = parseDate(String(val1));
     let date2 = parseDate(String(val2));
     for (var i=0; i<array.length; i++) {
         let temp = parseDate(array[i].dateOfBirth);
-        if((temp[2] >= date1[2]) && (temp[2] <= date2[2])) {
+        if((temp >= date1) && (temp <= date2)) {
                     tempArray.push(array[i]);  
         }
     }
     return tempArray;
 }
 
-//parse date to a format without fullstops - data[0] = day, [1] = month, [2] = year
+//parse date to a format without fullstops
 function parseDate(dateStr) {
     var date = dateStr;
     var temp = String(date).indexOf(' ');
     date = date.substring(0, temp != -1 ? temp : date.length);
     date = String(date).split('.');
-    return date;
+    var day = date[0];
+    var month = date[1] - 1; //January = 0
+    var year = date[2];
+    return new Date(year, month, day);
 }
 
 //sorting an array in ascending order by id
@@ -178,7 +187,7 @@ function dscSort(array) {
 function alphSort(array) {
     for (var i = 1; i < array.length; i++) {
         var tmp = array[i];
-        for (var j = i - 1; j >= 0 && ((array[j].firstName).localeCompare(tmp.firstName)) === 1; j--) {
+        for (var j = i - 1; j >= 0 && ((array[j].lastName).localeCompare(tmp.lastName)) === 1; j--) {
             array[j + 1] = array[j];
         }
         array[j + 1] = tmp;
