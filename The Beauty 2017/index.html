@@ -8,7 +8,6 @@
         </div>
         <script src="./bundle.js"></script>
         <form>
-                <form1>
                 <script>
                         function toggle() {
                         var text1 = document.getElementById("textField");
@@ -20,16 +19,15 @@
                                 text1.placeholder = "Od...";
                                 text2.placeholder = "Do...";
                                 text2.style.visibility = "visible";
-                        }else if (selected === "dateOfBirth") {
+                        } else if (selected === "dateOfBirth") {
                                 text1.placeholder = "Od: dd.mm.rrrr";
                                 text2.placeholder = "Do: dd.mm.rrrr";
                                 text2.style.visibility = "visible";
-                        }
-                        else {
+                        } else {
                                 text1.placeholder = "Filtruj...";
                                 text2.style.visibility = "hidden";
+                                }
                         }
-                }
                 </script>
                 <div>Filtrowanie</div>
                 <input type="text" id="textField" placeholder="Filtruj...">
@@ -43,7 +41,6 @@
                         <option value="dateOfBirth">Data urodzenia</option>
                 </select>
                 <input id="filter" type="button" value="Filtruj">
-                </form1>
         </form>
         <form>
                 <br>
@@ -58,7 +55,7 @@
         
         <table id="dataTable">
                 <tr> 
-                        <th style="width: 7%;">Id</th>
+                        <th>Id</th>
                         <th>Imię</th>
                         <th>Nazwisko</th>
                         <th>Data urodzenia</th>
@@ -66,6 +63,7 @@
                         <th>Doświadczenie</th>
                 </tr>
         </table>
+
         <form style="text-align:center">
                 <a id="pageOne" class="active">1</a>
                 <a id="pageTwo">2</a>

@@ -5,22 +5,23 @@
 
 body {
         background-image:url("../img/img.jpg");
+        background-repeat: no-repeat;
+        background-position: left bottom;
+        background-attachment: fixed;
         font-family: Velino;
     }
 
 #dataTable {
         text-align: center;
-        table-layout: fixed;
         margin-left: auto; 
         margin-right: auto;
         border-collapse: collapse;
         width: 700px;
-        transform: translate(0, -30%); 
+        transform: translate(0, -10%);
 }
 
 #dataTable td {
-        padding: 8px;
-        width: 300px;
+        padding: 12px 12px;
 }
 
 #dataTable tr:hover {
@@ -37,20 +38,17 @@ tr:nth-child(odd) {
 
 #dataTable th {
         font-weight: bold;
-        padding-top: 12px;
-        padding-bottom: 12px;
         text-align: center;
+        padding: 12px 12px;
         background-color: #ffcce9;
 }
 
 input[type=text], select {
-        width: 200px;
+        width: 130px;
         padding: 3px 3px;
-        margin: 8px 0;
-        display: inline-block;
+        margin: 8px 10px;
         border: 1px solid #ffcce9;
         border-radius: 4px;
-        box-sizing: border-box;
 }
 
 input[type=button] {
