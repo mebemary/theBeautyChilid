@@ -106,7 +106,7 @@ function filterWord (array, val, param) {
             temp = array[i].function;
         }
         //if it's similar to anything in an array, it's pushed to a result array (case insensitive)
-        if(temp.toLowerCase().match(val)) {
+        if(temp.toLowerCase().match(val) || temp.toUpperCase().match(val) || temp.match(val)) {
             tempArray.push(array[i]);
             }
         }
