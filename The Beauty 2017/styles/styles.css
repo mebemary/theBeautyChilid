@@ -25,7 +25,7 @@ body {
 }
 
 #dataTable tr:hover {
-        background-color: #ffcce9;
+        background-color: #BB98AD;
         }
 
 tr:nth-child(even) {
@@ -40,20 +40,20 @@ tr:nth-child(odd) {
         font-weight: bold;
         text-align: center;
         padding: 12px 12px;
-        background-color: #ffcce9;
+        background-color: #BB98AD;
 }
 
 input[type=text], select {
         width: 130px;
         padding: 3px 3px;
         margin: 8px 10px;
-        border: 1px solid #ffcce9;
+        border: 1px solid #BB98AD;
         border-radius: 4px;
 }
 
 input[type=button] {
         width: 50px;
-        background-color: #ffcce9;
+        background-color: #BB98AD;
         color: white;
         padding: 3px 3px;
         border: none;
@@ -63,11 +63,11 @@ input[type=button] {
 }
 
 form {
-        position:initial;
+        position: relative;
         margin-bottom: 18px;
         clear : none;
         padding: 3px 3px;
-        transform: translate(0, 100%); 
+        transform: translate(0, 180%); 
 }
 
 #textField2 {
@@ -81,6 +81,6 @@ a {
 }
 
 a.active {
-        background-color: #ffcce9;
+        background-color: #BB98AD;
         color: white;
 }
