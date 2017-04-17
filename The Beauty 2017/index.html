@@ -40,10 +40,9 @@
                         <option value="experience">Doświadczenie</option>
                         <option value="dateOfBirth">Data urodzenia</option>
                 </select>
-                <input id="filter" type="button" value="Filtruj">
+                <input id="filter" type="button" value="Filtruj"> <br>
         </form>
         <form>
-                <br>
                 <div>Sortowanie</div>
                 <select id="selectSort" name="sort">
                         <option value="ascending">Rosnąco</option>
@@ -53,22 +52,14 @@
                 <input id="sort" type="button" value="Sortuj">   
         </form>
         
-        <table id="dataTable">
-                <tr> 
-                        <th>Id</th>
-                        <th>Imię</th>
-                        <th>Nazwisko</th>
-                        <th>Data urodzenia</th>
-                        <th>Funkcja</th>
-                        <th>Doświadczenie</th>
-                </tr>
-        </table>
+        
 
-        <form style="text-align:center">
+        <form style="text-align:center;position: relative;">
                 <a id="pageOne" class="active">1</a>
                 <a id="pageTwo">2</a>
                 <a id="pageThree">3</a>
         </form>
+        
         <script>
                 links = document.querySelectorAll("a")
                 links.forEach(function (item) {
@@ -84,5 +75,23 @@
                         });
                 })
         </script>
+
+        <div>
+                <br><br>
+                <div>Wyczyść filtry</div>
+                <input id="cleanFilters" type="button" value="Czyść">
+        </div>
+
+        <table id="dataTable">
+                <tr> 
+                        <th>Id</th>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Data urodzenia</th>
+                        <th>Funkcja</th>
+                        <th>Doświadczenie</th>
+                </tr>
+        </table>
+        
 </body>
 </html>

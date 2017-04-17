@@ -43,52 +43,78 @@ function displayTable (array, perPage, startFrom) {
 
 //REACTION TO BUTTONS
 window.onload = function () {
+    var array = data.slice();
+    //says from which element the 
+    var startFrom = 0;
+    
     //reacts to clicking a button and filters data
     document.getElementById("filter").onclick = function(){
             var selected = document.getElementById("select").value;
             var label = document.getElementById("textField").value;
             var label2 = document.getElementById("textField2").value;
-            var array =[];
             if ((selected === "firstName") || (selected === "lastName") || (selected === "function")) {
-                array = filterWord(data, label, selected);
+                array = filterWord(array, label, selected);
             } else if ((selected === "id") ||(selected === "experience")) {
-                array = filterRange(data, label, label2, selected);
+                array = filterRange(array, label, label2, selected);
             } else if (selected === "dateOfBirth") {
-                array = filterDate(data, label, label2);
+                array = filterDate(array, label, label2);
             }
             clearTable();
-            displayTable(array, 5, 0);
+            displayTable(array, 5, startFrom);
+            eventFire(document.getElementById('pageOne'), 'click');
     };
 
     //reacts to clicking a button and sorts data
     document.getElementById("sort").onclick = function(){
             var selected = document.getElementById("selectSort").value;
-            var array =[];
             if ((selected === "ascending")) {
-                array = ascSort(data);
+                array = ascSort(array);
             } else if ((selected === "descending")) {
-                array = dscSort(data);
+                array = dscSort(array);
             } else if ((selected === "alphabetically")) {
-                array = alphSort(data);
+                array = alphSort(array);
             }
             clearTable();
-            displayTable(array, 5, 0);
+            displayTable(array, 5, startFrom);
+            eventFire(document.getElementById('pageOne'), 'click');
+    };
+
+    //reacts to button and cleans filters
+    document.getElementById("cleanFilters").onclick = function(){
+        array = data.slice();
+        clearTable();
+        startFrom = 0;
+        displayTable(array, 5, startFrom);
     };
 
     document.getElementById("pageOne").onclick = function(){
         clearTable();
-        displayTable(data, 5, 0);
+        startFrom = 0;
+        displayTable(array, 5, startFrom);
     };
 
     document.getElementById("pageTwo").onclick = function(){
         clearTable();
-        displayTable(data, 5, 5);
+        startFrom = 5;
+        displayTable(array, 5, startFrom);
     };
 
     document.getElementById("pageThree").onclick = function(){
         clearTable();
-        displayTable(data, 5, 10);
+        startFrom = 10;
+        displayTable(array, 5, startFrom);
     };
+};
+
+//simulates a click on page button, to change an active one
+function eventFire(el, etype){
+  if (el.fireEvent) {
+    el.fireEvent('on' + etype);
+  } else {
+    var evObj = document.createEvent('Events');
+    evObj.initEvent(etype, true, false);
+    el.dispatchEvent(evObj);
+  }
 }
 
 //FILTERS
